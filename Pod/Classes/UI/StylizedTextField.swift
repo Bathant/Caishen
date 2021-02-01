@@ -85,29 +85,12 @@ open class StylizedTextField: UITextField, UITextFieldDelegate {
     
     // MARK: - Override functions
 
-    open override var placeholder: String? {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
-    
     @discardableResult
     override open func becomeFirstResponder() -> Bool {
         UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: self)
         return super.becomeFirstResponder()
     }
     
-    open override func draw(_ rect: CGRect) {
-        if text == "" || text == UITextField.emptyTextFieldCharacter {
-            super.drawPlaceholder(in: rect)
-        } else {
-            super.draw(rect)
-        }
-    }
-    
-    open override func drawPlaceholder(in rect: CGRect) {
-        
-    }
     
     open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true
